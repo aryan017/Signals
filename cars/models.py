@@ -1,5 +1,6 @@
 from django.db import models
 from buyers.models import Buyer
+import uuid  # generate random string
 
 # Create your models here.
 
@@ -12,3 +13,11 @@ class Car(models.Model):
 
     def __str__(self):
         return f"{self.name}-{self.price}-{self.buyer}"
+
+    # def save(self,*args,**kwargs):
+    #     if self.code=="":
+    #         self.code=str(uuid.uuid4()).replace("-", "").upper()[:10] 
+    #     return super().save(*args,**kwargs)
+
+    # above method is the traditional method of overriding a save method  in django
+    # Now we are going to use the method of signal
